@@ -1,13 +1,28 @@
-<% if @user.errors.any? %>
-  <ul>
-    <% @user.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
-<% end %>
-
-<%= form_for @user do |f| %>
-  <%= f.text_field :username, placeholder: 'username', focus: true %>
-  <%= f.password_field :password, placeholder: 'password' %>
-  <%= f.submit(@user.new_record? ? 'Sign up' : 'Update account') %>
-<% end %>
+<div class="ui grid">
+  <div class="eight wide column centered">
+    <% if @user.errors.any? %>
+      <div class="ui error message">
+        <i class="close icon"></i>
+        <div class="header">
+          You got these errors:
+        </div>
+        <ul class="list">
+          <% @user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>  
+    <div class="ui form">
+      <%= form_for @user do |f| %>
+        <div class="field">
+          <%= f.text_field :username, placeholder: 'username', type: 'text', focus: true %>
+        </div>
+        <div class="field">
+          <%= f.password_field :password, placeholder: 'password' %>
+        </div>
+        <%= f.submit(@user.new_record? ? 'Sign up' : 'Update account', class: 'ui button violet') %>
+      <% end %>
+    </div>
+  </div>
+</div>
