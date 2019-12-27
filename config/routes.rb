@@ -1,5 +1,12 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'chatroom/index'
+  get 'sessions/new'
+  get 'sessions/create'
+  get 'sessions/destroy'
+  root 'chatroom#index'
+
+  get 'login', to: 'sessions#new'
+  resources :sessions, only: [:create, :destroy]
 end
