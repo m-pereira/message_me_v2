@@ -10,11 +10,11 @@
         <div class="menu">
           <a class="item">Log out</a>
           <%= link_to 'Log in', login_path, class: 'item' %>
-          <a class="item">Sign up</a>
+          <%# link_to 'Edit your account', edit_user_path(current_user) %>
         </div>
       </div>
       <div class="item">
-        <div class="ui violet button">Sign Up</div>
+        <%= link_to 'Sign up', signup_path, class: 'ui violet button' %>
       </div>
     </div>
   </div>
