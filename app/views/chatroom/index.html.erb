@@ -6,26 +6,21 @@
 <div class="ui two column grid">
   <div class="twelve wide column">
     <div class="ui fluid raised card chatbox">
-      <div class="content">
-        <div class="ui feed">
-          <div class="event">
-            <div class="content">
-              <div class="summary">
-                 <em>Christian Rocha</em>: Test message.
-              </div>
-            </div>
+        <div class="content">
+          <div class="ui feed">
+            <%= render @messages %>
           </div>
         </div>
-      </div>
       <div class="extra content">
-        <form class="ui reply form">
+        <%= form_for(@message, html: { class: 'ui reply form', role: 'form' }, 
+          url: messages_path) do |f| %>
           <div class="field">
             <div class="ui fluid icon input">
-              <input type="text" placeholder="Enter a message...">
-              <i class="bordered blue edit icon"></i>
+              <%= f.text_field :body, placeholder: 'enter a message...' %>
+              <%= f.button '<i class="bordered blue edit icon"></i>'.html_safe %>
             </div>
           </div>
-        </form>
+        <% end %>
       </div>
     </div>
   </div>
