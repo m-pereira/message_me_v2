@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
 class ChatroomController < ApplicationController
-  def index; end
+  before_action :require_user
+
+  def index
+    @users = User.all
+  end
 end

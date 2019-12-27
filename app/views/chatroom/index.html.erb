@@ -34,15 +34,10 @@
     <div class="ui fluid raised card chatbox">
       <div class="content">
         <div class="ui inverted vertical menu">
-          <a class="active item">
-            Home
-          </a>
-          <a class="item">
-            Messages
-          </a>
-          <a class="item">
-            Friends
-          </a>
+          <% @users.each do |user| %>
+            <%= link_to user.username, '#', 
+              class: "item #{'active blue' if user == current_user}" %>
+          <% end %>
         </div>
       </div>
     </div>
