@@ -25,8 +25,6 @@ class SessionsController < ApplicationController
   private
 
   def logged_in_redirect
-    if logged_in?
-      redirect_to root_path, alert: 'You are already logged in.'
-    end
+    redirect_to root_path, alert: 'You are already logged in.' if logged_in?
   end
 end

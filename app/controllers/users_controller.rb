@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      # @session.id = @user.id
+      session[:user_id] = @user.id
       redirect_to root_path, notice: "Welcome to message me #{@user.username}."
     else
       render 'new'
