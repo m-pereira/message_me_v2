@@ -49,3 +49,4 @@ Style/Semicolon:
 Style/GuardClause:
   Exclude:
     - 'app/controllers/messages_controller.rb'
+    - 'app/controllers/users_controller.rb'

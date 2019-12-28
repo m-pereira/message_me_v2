@@ -2,6 +2,7 @@
 
 class UsersController < ApplicationController
   before_action :set_user, only: %i[edit update]
+  before_action :require_owner, only: %i[edit update]
 
   def new
     @user = User.new
@@ -32,6 +33,12 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:username, :password)
+  end
+
+  def require_owner
+    unless current_user == User.find(params[:id])
+      redirect_to root_path, alert: 'You can only edit your own account.'
+    end
   end
 
   def set_user

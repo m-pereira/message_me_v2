@@ -40,6 +40,10 @@ RSpec.describe UsersController, type: :controller do
   describe 'GET #edit' do
     let!(:user) { create(:user) }
 
+    before do
+      login(user)
+    end
+
     it 'returns http ok' do
       get :edit, params: { id: user.id }
 
@@ -58,6 +62,10 @@ RSpec.describe UsersController, type: :controller do
         }
       }
     }
+
+    before do
+      login(user)
+    end
 
     it 'updates the user' do
       subject
