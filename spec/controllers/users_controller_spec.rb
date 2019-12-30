@@ -52,13 +52,51 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe "PUT #update" do
+    context 'when valid attributes' do
+      let!(:user) { create(:user, username: 'Test') }
+
+      subject { 
+        put :update, params: { 
+          id: user.id, user: { 
+            username: 'New username', 
+            password: 'new password'
+          }
+        }
+      }
+
+      before do
+        login(user)
+      end
+
+      it 'updates the user' do
+        subject
+        user.reload
+
+        expect(user.username).to eq('New username')
+      end
+
+      it 'has flash notice' do
+        subject
+
+        expect(flash[:notice]).to match(/Account successfully updated./)
+      end
+
+      it 'redirects to root path' do
+        subject
+
+        expect(response).to redirect_to(root_path)
+      end
+    end
+  end
+
+  context 'when invalid attributes' do
     let!(:user) { create(:user, username: 'Test') }
 
     subject { 
       put :update, params: { 
         id: user.id, user: { 
-          username: 'New username', 
-          password: 'new password'
+          username: nil, 
+          password: nil
         }
       }
     }
@@ -67,23 +105,10 @@ RSpec.describe UsersController, type: :controller do
       login(user)
     end
 
-    it 'updates the user' do
-      subject
-      user.reload
-
-      expect(user.username).to eq('New username')
-    end
-
-    it 'has flash notice' do
+    it 'render edit' do
       subject
 
-      expect(flash[:notice]).to match(/Account successfully updated./)
-    end
-
-    it 'redirects to root path' do
-      subject
-
-      expect(response).to redirect_to(root_path)
+      expect(response).to render_template(:edit)
     end
   end
 end
