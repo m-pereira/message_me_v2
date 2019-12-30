@@ -1,4 +1,5 @@
 [![CircleCI](https://circleci.com/gh/m-pereira/message-me.svg?style=svg)](https://circleci.com/gh/m-pereira/message-me)
+[![Coverage Status](https://coveralls.io/repos/github/m-pereira/message-me/badge.svg)](https://coveralls.io/github/m-pereira/message-me)
 
 # Message me
 

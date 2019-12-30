@@ -22,6 +22,7 @@ gem 'uglifier', '>= 1.3.0'
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'capybara'
+  gem 'coveralls', require: false
   gem 'factory_bot_rails'
   gem 'ffaker'
   gem 'pry'
@@ -39,6 +40,7 @@ end
 
 group :test do
   gem 'shoulda-matchers'
+  gem 'simplecov', require: false
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
